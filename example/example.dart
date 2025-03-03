@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
           strokeCap: StrokeCap.round,
 
           // Text Style for Countdown Text.
-          textStyle: const TextStyle(
+          textStyle: () => const TextStyle(
             fontSize: 33.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,

@@ -55,7 +55,7 @@ class CircularCountDownTimer extends StatefulWidget {
   final StrokeCap strokeCap;
 
   /// Text Style for Countdown Text.
-  final TextStyle? textStyle;
+  final TextStyle Function()? textStyle;
 
   /// Text Align for Countdown Text.
   final TextAlign textAlign;
@@ -308,11 +308,12 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
                             alignment: FractionalOffset.center,
                             child: Text(
                               time,
-                              style: widget.textStyle ??
-                                  const TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
-                                  ),
+                              style: widget.textStyle == null
+                                  ? const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.black,
+                                    )
+                                  : widget.textStyle!(),
                               textAlign: widget.textAlign,
                             ),
                           )
