@@ -13,7 +13,7 @@ class CircularCountDownTimer extends StatefulWidget {
   final Color fillColor;
 
   /// Filling Gradient for Countdown Widget.
-  final Gradient? fillGradient;
+  final Gradient Function()? fillGradient;
 
   /// Ring Color for Countdown Widget.
   final Color ringColor;
@@ -264,8 +264,6 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
           /// Only call the [_onComplete] block when the animation is not reversed.
           if (!widget.isReverse) _onComplete();
           break;
-        default:
-        // Do nothing
       }
     });
 
@@ -292,7 +290,9 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
                         painter: CustomTimerPainter(
                             animation: _countDownAnimation ?? _controller,
                             fillColor: widget.fillColor,
-                            fillGradient: widget.fillGradient,
+                            fillGradient: widget.fillGradient == null
+                                ? null
+                                : widget.fillGradient!(),
                             ringColor: widget.ringColor,
                             ringGradient: widget.ringGradient,
                             strokeWidth: widget.strokeWidth,
